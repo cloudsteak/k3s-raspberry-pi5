@@ -5,6 +5,12 @@
 
 ### Local "Build and run"
 
+- Go to work dir
+
+```bash
+cd examples/webapp1
+```
+
 - Define ACR name
 
 ```bash
@@ -56,7 +62,7 @@ docker push $acrName/node-webapp:1.0.0
 
 ### Create WebApp in K3s
 
-#### Check deployment file: [examples/webapp1/node-webapp.yaml](https://raw.githubusercontent.com/cloudsteak/k3s-raspberry-pi5/main/examples/webapp1/node-webapp.yaml)
+#### Check deployment file: [node-webapp.yaml](https://raw.githubusercontent.com/cloudsteak/k3s-raspberry-pi5/main/examples/webapp1/node-webapp.yaml)
 
 Important parameters:
 
@@ -68,5 +74,5 @@ Important parameters:
 #### Create WebApp
 
 ```bash
-kubectl apply -f examples/webapp1/node-webapp.yaml
+kubectl apply -f node-webapp.yaml
 ```
