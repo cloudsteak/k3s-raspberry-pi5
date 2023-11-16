@@ -156,4 +156,31 @@ sudo systemctl restart k3s
 
 ## <a name="nginx"></a>Ingress NGINX installation and configuration
 
+Because NGINX is pretty common in this world, I use it for this  scenario. Related document: https://kubernetes.github.io/ingress-nginx/deploy/
+
+> Notes:
+
+> _I don't use Helm here._
+
+> _Check the available releases for controller: https://github.com/kubernetes/ingress-nginx/releases_
+
+
+- Install the controller 
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
+```
+
+- Check result
+
+```bash
+kubectl get svc -n ingress-nginx
+```
+Note: You need to see something similar (EXTERNAL-IP is the IP of your Raspberry Pi 5)
+```bash
+NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)                   
+ingress-nginx-controller             LoadBalancer   10.xxx.xxx.xxx   xxx.xxx.xxx.xxx   80:31449/TCP,443:32554/TCP
+```
+
+
 ## <a name="example1"></a>Example webapp installation with ingress
