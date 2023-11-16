@@ -1,7 +1,7 @@
 # NodeJS WebApp
 
 - Node 18 LTS
-- ACR run
+- Image on ACR
 
 ### Local "Build and run"
 
