@@ -91,8 +91,19 @@ kubectl get all -n node-webapp
 kubectl get ingress -n node-webapp
 ```
 
-Note: Ingress must have same address to Raspberry Pi 5. 
+Note: Ingress must have same address to Raspberry Pi 5.
 
+## Scale
+
+```bash
+# More Pods
+kubectl -n node-webapp scale --replicas=5 deployment node-webapp-deployment
+```
+
+```bash
+# Less pods
+kubectl -n node-webapp scale --replicas=1 deployment node-webapp-deployment
+```
 
 ## Upgrade app if new version is available
 
@@ -106,5 +117,5 @@ kubectl get pods -n node-webapp -o name  | grep node-webapp-deployment | xargs k
 - Delete namespace
 
 ```bash
-kubectl delete ns node-webapp --wait=false 
+kubectl delete ns node-webapp --wait=false
 ```
