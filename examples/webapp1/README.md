@@ -3,7 +3,7 @@
 - Node 18 LTS
 - Image on ACR
 
-### Local "Build and run"
+## Local "Build and run"
 
 - Go to work dir
 
@@ -39,7 +39,7 @@ docker run -d -p 8080:3000 --name nodedemo $acrName/node-webapp:latest
 
 Check: http://localhost:8080
 
-### Push image to ACR
+## Push image to ACR
 
 - Login to ACR
 
@@ -60,9 +60,9 @@ docker push $acrName/node-webapp:latest
 docker push $acrName/node-webapp:1.0.0
 ```
 
-### Create WebApp in K3s
+## Create WebApp in K3s
 
-#### Check deployment file: [node-webapp.yaml](https://raw.githubusercontent.com/cloudsteak/k3s-raspberry-pi5/main/examples/webapp1/node-webapp.yaml)
+### Check deployment file: [node-webapp.yaml](https://raw.githubusercontent.com/cloudsteak/k3s-raspberry-pi5/main/examples/webapp1/node-webapp.yaml)
 
 Important parameters:
 
@@ -71,13 +71,13 @@ Important parameters:
 - Image: finallcloudacr.azurecr.io/node-webapp:latest
 - host: node-webapp.finall.cloud (it must be your FQDN for your Raspberry Pi 5. Ip address is not acceptable)
 
-#### Create WebApp
+### Create WebApp
 
 ```bash
 kubectl apply -f node-webapp.yaml
 ```
 
-#### Check result
+### Check result
 
 - Get all resources from related namespace
 
@@ -92,3 +92,13 @@ kubectl get ingress -n node-webapp
 ```
 
 Note: Ingress must have same address to Raspberry Pi 5. 
+
+
+
+## Delete resource
+
+- Delete namespace
+
+```bash
+kubectl delete ns node-webapp --wait=false 
+```
