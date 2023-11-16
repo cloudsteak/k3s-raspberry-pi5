@@ -94,6 +94,12 @@ kubectl get ingress -n node-webapp
 Note: Ingress must have same address to Raspberry Pi 5. 
 
 
+## Upgrade app if new version is available
+
+```bash
+# Delete all old pods
+kubectl get pods -n node-webapp -o name  | grep node-webapp-deployment | xargs kubectl delete -n node-webapp
+```
 
 ## Delete resource
 
