@@ -76,3 +76,19 @@ Important parameters:
 ```bash
 kubectl apply -f node-webapp.yaml
 ```
+
+#### Check result
+
+- Get all resources from related namespace
+
+```bash
+kubectl get all -n node-webapp
+```
+
+- Get ingress info
+
+```bash
+kubectl get ingress -n node-webapp
+```
+
+Note: Ingress must have same address to Raspberry Pi 5. 
