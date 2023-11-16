@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 /* Kezdőlap */
 app.get('/', function (req, res) {
   const NodeVersion = process.versions;
-  res.render('index', { data: { nodeVerison: NodeVersion.node, title: 'NodeJs WebApp', host: hostname } });
+  res.render('index', { data: { nodeVerison: NodeVersion.node, title: 'K3s on Raspberry Pi 5', host: hostname } });
 });
 
 // catch 404 and forward to error handler
