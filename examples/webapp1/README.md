@@ -56,7 +56,7 @@ docker push $acrName/node-webapp:1.0.0
 
 ### Create WebApp in K3s
 
-#### Check deployment file: examples/webapp1/node-webapp.yaml
+#### Check deployment file: [examples/webapp1/node-webapp.yaml](/examples/webapp1/node-webapp.yamlex)
 
 Important parameters:
 
