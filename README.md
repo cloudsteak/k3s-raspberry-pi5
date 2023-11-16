@@ -1,13 +1,11 @@
-# k3s-raspberry-pi5
+# Home Kubernetes on Raspberry Pi 5
 
-Home Kubernetes on Raspberry Pi 5
-
-<u>Background</u>
+## Background
 
 - In this configuration I use **only one** Raspberry Pi 5.
 - I use K3s with disabled traefik
 
-<u>Technical information:</u>
+## Technical information:
 
 - Board: Raspberry Pi 5
 - Memory: 8 Gb
@@ -15,9 +13,17 @@ Home Kubernetes on Raspberry Pi 5
 - OS: Ubuntu 23.10 for Raspberry Pi 5 (https://ubuntu.com/download/raspberry-pi)
 
 
-<u>Table of content</u>
+## Table of content
 
 - [Basic installation and configuration](/#installation)
 - [Private image repository configuration (Azure ACR)](/#cr)
 - [Ingress NGINX installation and configuration](/#nginx)
 - [Example webapp installation with ingress](/#example1)
+
+## <a name="installation"></a>Basic installation and configuration
+
+## <a name="cr"></a>Private image repository configuration (Azure ACR)
+
+## <a name="nginx"></a>Ingress NGINX installation and configuration
+
+## <a name="example1"></a>Example webapp installation with ingress
