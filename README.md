@@ -29,7 +29,7 @@ Start here: https://k3s.io
 
 ```bash
 # Disable traefik
-export INSTALL_K3S_EXEC="server --disable=traefik"
+export INSTALL_K3S_EXEC="server --disable=traefik --write-kubeconfig-mode=644"
 
 # Create k3s cluster
 curl -sfL https://get.k3s.io | sh -s -
@@ -149,16 +149,21 @@ configs:
       password: xxxxxxxxxx # this is the { ACR password }
 ```
 
-- Restart K3d
+- Restart K3s
 
 ```bash
 sudo systemctl restart k3s
 ```
 
+- Delete K3s
+
+```bash
+sudo /usr/local/bin/k3s-uninstall.sh
+```
 
 ## <a name="nginx"></a>Ingress NGINX installation and configuration
 
-Because NGINX is pretty common in this world, I use it for this  scenario. Related document: https://kubernetes.github.io/ingress-nginx/deploy/
+Because NGINX is pretty common in this world, I use it for this scenario. Related document: https://kubernetes.github.io/ingress-nginx/deploy/
 
 > Notes:
 
@@ -166,8 +171,7 @@ Because NGINX is pretty common in this world, I use it for this  scenario. Relat
 
 > _Check the available releases for controller: https://github.com/kubernetes/ingress-nginx/releases_
 
-
-- Install the controller 
+- Install the controller
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
@@ -178,12 +182,13 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 ```bash
 kubectl get svc -n ingress-nginx
 ```
+
 Note: You need to see something similar (EXTERNAL-IP is the IP of your Raspberry Pi 5)
+
 ```bash
-NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)                   
+NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)
 ingress-nginx-controller             LoadBalancer   10.xxx.xxx.xxx   xxx.xxx.xxx.xxx   80:31449/TCP,443:32554/TCP
 ```
-
 
 ## <a name="example1"></a>Example webapp installation with ingress
 
