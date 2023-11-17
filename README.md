@@ -28,11 +28,19 @@ Start here: https://k3s.io
 - Deploy K3s without traefik:
 
 ```bash
+
+sudo -i
 # Disable traefik
 export INSTALL_K3S_EXEC="server --disable=traefik --write-kubeconfig-mode=644"
 
 # Create k3s cluster
 curl -sfL https://get.k3s.io | sh -s -
+```
+
+- Exit root mode
+
+```bash
+exit
 ```
 
 - Check installation:
@@ -48,20 +56,7 @@ Config file: `sudo nano /etc/systemd/system/k3s.service`
 - Install kubectl
 
 ```bash
-sudo snap install kubectl --classic
-```
-
-- Use K3s config for kubectl to connect the cluster
-
-```bash
-# Create .kube directory
-mkdir ~/.kube
-
-# Copy k3s.yaml to my user directory
-sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
-
-# Modify ownership on file. If you have config there, it will overwrite it!
-sudo chown $USER:$USER ~/.kube/config
+snap install kubectl --classic
 ```
 
 - Check connection:
