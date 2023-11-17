@@ -29,7 +29,7 @@ Start here: https://k3s.io
 
 ```bash
 # Disable traefik
-export INSTALL_K3S_EXEC="server --no-deploy traefik"
+export INSTALL_K3S_EXEC="server --disable=traefik"
 
 # Create k3s cluster
 curl -sfL https://get.k3s.io | sh -s -
@@ -40,6 +40,8 @@ curl -sfL https://get.k3s.io | sh -s -
 ```bash
 sudo k3s kubectl get node
 ```
+
+Config file: `sudo nano /etc/systemd/system/k3s.service`
 
 ### Connect to cluster
 
