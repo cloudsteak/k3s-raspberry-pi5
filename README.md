@@ -21,9 +21,11 @@
 
 ## <a name="installation"></a>Basic installation and configuration
 
-### Installation
+### Documentation
 
 Start here: https://k3s.io
+
+### Installation
 
 - Deploy K3s without traefik:
 
@@ -31,10 +33,16 @@ Start here: https://k3s.io
 
 sudo -i
 # Disable traefik
-export INSTALL_K3S_EXEC="server --disable=traefik --write-kubeconfig-mode=644"
+export INSTALL_K3S_EXEC="server --disable=traefik --write-kubeconfig-mode=664"
 
-# Create k3s cluster
-curl -sfL https://get.k3s.io | sh -s -
+# Create k3s cluster (for remote access use --tls-san {your server fqdn})
+curl -sfL https://get.k3s.io | sh -s - server --tls-san {your server fqdn}
+```
+
+- Check installation:
+
+```bash
+systemctl status k3s.service
 ```
 
 - Exit root mode
@@ -47,6 +55,10 @@ exit
 
 ```bash
 sudo k3s kubectl get node
+```
+
+```bash
+k3s kubectl get node
 ```
 
 Config file: `sudo nano /etc/systemd/system/k3s.service`
@@ -63,6 +75,55 @@ snap install kubectl --classic
 
 ```bash
 kubectl get node
+```
+
+### Kubeconfig file
+
+Location on the server: `/etc/rancher/k3s/k3s.yaml`
+
+- Copy the file to your userr's home directory:
+
+```bash
+cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+```
+
+- Copy the file to your local machine:
+
+```bash
+scp user@server:/etc/rancher/k3s/k3s.yaml ~/k3s.yaml
+```
+
+- Add it to your existing kubeconfig file:
+
+```bash
+cat k3s.yaml >> ~/.kube/config
+```
+
+- Modify ip address in the kubeconfig file:
+
+```bash
+# Linux
+sed -i 's/127.0.0.1/{your server ip}/g' ~/.kube/config
+
+# MacOS
+sed -i '' 's/127.0.0.1/{your server ip}/g' ~/.kube/config
+
+```
+
+- Modify server name from default to your server name:
+
+```bash
+# Linux
+sed -i 's/default/{your server name}/g' ~/.kube/config
+
+# MacOS
+sed -i '' 's/default/{your server name}/g' ~/.kube/config
+```
+
+### Uninstall K3s
+
+```bash
+sudo /usr/local/bin/k3s-uninstall.sh
 ```
 
 ## <a name="cr"></a>Private image repository configuration
